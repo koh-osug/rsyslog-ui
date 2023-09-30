@@ -1,0 +1,38 @@
+version: '3.3'
+
+services:
+  rsyslogdb:
+    image: rsyslogdb
+    build:
+      context: ./db
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_USER: rsyslog
+      MARIADB_PASSWORD: password
+      MARIADB_DATABASE: Syslog
+    ports:
+      - "3001:3306"
+  rsyslogserver:
+    image: rsyslogserver
+    container_name: rsyslogserver
+    build:
+      context: ./server
+    environment:
+      MARIADB_USER: rsyslog
+      MARIADB_PASSWORD: password
+      MARIADB_HOST: rsyslogdb
+      MARIADB_PORT: 3306
+    ports:
+      - "5001:514"
+  rsyslogwebui:
+    image: rsyslogwebui
+    container_name: rsyslogwebui
+    build:
+      context: ./webui
+    environment:
+      MARIADB_USER: rsyslog
+      MARIADB_PASSWORD: password
+      MARIADB_HOST: rsyslogdb
+      MARIADB_PORT: 3306
+    ports:
+      - "8100:80"
