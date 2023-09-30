@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git clone "https://github.com/Tiny-Lama/rsyslog-webui.git" /app
+git clone "https://github.com/Tiny-Lama/rsyslog-webui.git" /app || true
 cd /app
 cp config-template.php config.php
 
