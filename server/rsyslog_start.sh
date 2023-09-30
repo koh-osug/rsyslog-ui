@@ -6,4 +6,9 @@ EOL
 
 pidfile="/var/run/rsyslogd.pid"
 rm -f "${pidfile}"
+cat >> /etc/rsyslog.conf << EOL
+module(load="imtcp")
+input(type="imtcp" port="514")
+EOL
+
 exec rsyslogd -n -f /etc/rsyslog.conf -i "${pidfile}"

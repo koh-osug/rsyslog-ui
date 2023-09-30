@@ -11,7 +11,7 @@ cat > config.php << EOL
 
 	// Mysql syslog database config
 	\$mysql_server = '$MARIADB_HOST';
-	\$mysql_database = 'SysLog';
+	\$mysql_database = 'Syslog';
 	\$mysql_user = '$MARIADB_USER';
 	\$mysql_password = '$MARIADB_PASSWORD';
 
